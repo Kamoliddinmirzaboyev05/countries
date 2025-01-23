@@ -60,12 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (ming < 10) {
           ming = `00${ming}`;
         } else if (ming < 100) {
-            ming = `0${Math.floor(ming)}`;
-            population = `${Math.floor(mln)} ${ming} ${yuz}`;
-        }
-        else{
-            population = `${Math.floor(mln)} ${Math.floor(ming)} ${yuz}`;
-
+          ming = `0${Math.floor(ming)}`;
+          population = `${Math.floor(mln)} ${ming} ${yuz}`;
+        } else {
+          population = `${Math.floor(mln)} ${Math.floor(ming)} ${yuz}`;
         }
       }
       //   milliarddan ko'p aholi
@@ -74,6 +72,11 @@ document.addEventListener("DOMContentLoaded", () => {
         var ming = (item.population % 1000000) / 1000;
         var mln = (item.population % 1000000000) / 1000000;
         var mlrd = item.population / 1000000000;
+        if (yuz < 10) {
+          yuz = `00${yuz}`;
+        } else if (yuz < 100) {
+          yuz = `0${yuz}`;
+        }
         population = `${Math.floor(mlrd)} ${Math.floor(mln)} ${Math.floor(
           ming
         )} ${yuz}`;
