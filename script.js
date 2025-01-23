@@ -29,22 +29,54 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Starting api
-  let data;
+  let data, population;
   const apiLink = "https://restcountries.com/v3.1/all";
   const writeData = (DB) => {
     DB.forEach((item) => {
-      var mln = item.population / 1000000;
-      var ming = (item.population % 1000000) / 1000;
-      var yuz = item.population % 1000;
-      if (Math.floor(mln) == 0) {
-        mln = "";
-      } else {
-        mln = Math.floor(mln);
+      if (item.population < 1000) {
+        population = item.population;
       }
-      if (Math.floor(ming) == 0 && Math.floor(mln) == 0) {
-        ming = "";
-      } else {
-        ming = Math.floor(ming);
+      // milliondan kam aholi
+      else if (item.population > 1000 && item.population < 1000000) {
+        var yuz = item.population % 1000;
+        if (yuz < 10) {
+          yuz = `00${yuz}`;
+        } else if (yuz < 100) {
+          yuz = `0${yuz}`;
+        }
+        var ming = item.population / 1000;
+        population = `${Math.floor(ming)} ${yuz}`;
+      }
+      //   milliondan ko'p aholi
+      else if (item.population > 1000000 && item.population < 1000000000) {
+        var yuz = item.population % 1000;
+        var ming = (item.population % 1000000) / 1000;
+        var mln = item.population / 1000000;
+        if (yuz < 10) {
+          yuz = `00${yuz}`;
+        } else if (yuz < 100) {
+          yuz = `0${yuz}`;
+        }
+        if (ming < 10) {
+          ming = `00${ming}`;
+        } else if (ming < 100) {
+            ming = `0${Math.floor(ming)}`;
+            population = `${Math.floor(mln)} ${ming} ${yuz}`;
+        }
+        else{
+            population = `${Math.floor(mln)} ${Math.floor(ming)} ${yuz}`;
+
+        }
+      }
+      //   milliarddan ko'p aholi
+      else {
+        var yuz = item.population % 1000;
+        var ming = (item.population % 1000000) / 1000;
+        var mln = (item.population % 1000000000) / 1000000;
+        var mlrd = item.population / 1000000000;
+        population = `${Math.floor(mlrd)} ${Math.floor(mln)} ${Math.floor(
+          ming
+        )} ${yuz}`;
       }
       block.innerHTML += `
         <div class="card">
@@ -55,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <h2 class="country-name">${item.name.common}</h2>
                 <div class="row">
                   <p class="key">Population:</p>
-                  <p class="value">${mln} ${ming} ${yuz}</p>
+                  <p class="value">${population}</p>
                 </div>
                 <div class="row">
                   <p class="key">Region:</p>
@@ -81,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const req = await fetch(link);
     data = await req.json();
     writeData(data);
-    console.log(data[35].population);
+    console.log(data[27].population);
   };
   getData(apiLink);
   // Synxron funksiya end
