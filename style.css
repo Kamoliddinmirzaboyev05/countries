@@ -154,10 +154,11 @@ option {
 }
 .flag {
   width: 100%;
+  object-fit: cover;
 }
 .flag img {
-  width: 100%;
-  object-fit: contain;
+  width: 280px;
+  height: 150px;
 }
 .card-text {
   padding: 24px;
@@ -216,5 +217,12 @@ option {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .card {
+    width: 350px;
+  }
+  .flag img {
+    width: 350px;
+    height: 200px;
   }
 }
