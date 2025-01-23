@@ -1,0 +1,220 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito Sans";
+  transition: all 0.5s ease;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+nav {
+  box-shadow: 0px 2px 4px 0px #0000000e;
+}
+.dark nav {
+  background-color: #2b3844;
+}
+.dark nav h2,
+.dark nav button {
+  color: white;
+}
+nav .container {
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav h2 {
+  font-size: 24px;
+  color: #111517;
+  font-weight: 800;
+  line-height: 32px;
+}
+nav button {
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  border: none;
+  background-color: transparent;
+}
+nav button:hover {
+  box-shadow: 0px 2px 9px 0px #2c2c2c0e;
+}
+nav button:active {
+  background-color: rgb(205, 201, 201);
+}
+.btn-img {
+  width: 30px;
+  height: 30px;
+}
+.btn-img img {
+  width: 100%;
+}
+
+/* Styling main section */
+main {
+  background-color: #fafafa;
+}
+.dark main {
+  background-color: #202c36;
+  color: white;
+}
+.section1 .container {
+  padding: 50px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.search {
+  box-shadow: 0px 2px 9px 0px #0000000e;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 400px;
+  justify-content: start;
+  background-color: white;
+  padding: 19px 32px;
+}
+.dark .search {
+  background-color: #2b3844;
+  color: white;
+}
+.search i {
+  color: #848484;
+}
+.dark .search i {
+  color: white;
+}
+.search input {
+  border: none;
+  outline: none;
+  width: 100%;
+  background-color: transparent;
+}
+.dark .search input {
+  color: white;
+}
+.search input::placeholder {
+  color: #848484;
+  font-size: 14px;
+  font-weight: 400;
+}
+.dark .search input::placeholder {
+  color: white;
+}
+.select {
+  width: 200px;
+  border: none;
+  padding: 18px 20px;
+  background-color: white;
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #111517;
+  box-shadow: 0px 2px 9px 0px #0000000e;
+}
+option {
+  padding-bottom: 10px;
+}
+.dark select {
+  background-color: #2b3844;
+  color: white;
+}
+/* Styline section 2 */
+
+.block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.card {
+  width: 280px;
+  background-color: white;
+  box-shadow: 0px 0px 7px 2px #00000008;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 25px;
+}
+.dark .card {
+  background-color: #2b3844;
+  color: white;
+}
+.dark .card .card-text p,
+.dark .card .card-text h2 {
+  color: white;
+}
+.flag {
+  width: 100%;
+}
+.flag img {
+  width: 100%;
+  object-fit: contain;
+}
+.card-text {
+  padding: 24px;
+}
+.country-name {
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 24px;
+  color: #111517;
+  padding-bottom: 16px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-bottom: 10px;
+}
+.key {
+  font-weight: 600;
+  font-size: 14px;
+  color: #111517;
+}
+.value {
+  font-weight: 400;
+  font-size: 14px;
+  color: #111517;
+}
+
+@media (max-width: 480px) {
+  nav .container {
+    padding: 20px 16px;
+  }
+  nav h2 {
+    font-size: 14px;
+  }
+  nav button {
+    font-size: 12px;
+  }
+  .btn-img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .section1 .container {
+    padding: 30px 16px;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: start;
+    gap: 30px;
+  }
+  .search {
+    width: 100%;
+  }
+  .block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
