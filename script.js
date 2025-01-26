@@ -34,9 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
       modalBtnImg.setAttribute("src", "img/moon.svg");
     }
   };
-  backBtn.addEventListener("click", () => {
-    modal.style.bottom = "-1000px";
-  });
 
   changeMode();
   mode.addEventListener("click", () => {
@@ -190,19 +187,22 @@ document.addEventListener("DOMContentLoaded", () => {
       country =
         e.target.parentElement.parentElement.querySelector("h2").textContent;
       clicked = e.target.parentElement.parentElement.classList.contains("card");
+      if (clicked && !modal.classList.contains("show-modal")) {
+        modal.classList.add("show-modal");
+      }
     }
   });
+
+  backBtn.addEventListener("click", () => {
+    modal.classList.remove("show-modal");
+  });
+
   const writeModal = (DB) => {
     DB.forEach((item) => {
       window.addEventListener("click", () => {
         if (item.name.common == country) {
-          if (clicked) {
-            modal.style.top = "0px";
-            modal.classList.add("show-modal");
-          }
           const currencyKeys = Object.values(item.currencies);
           const languagesKeys = Object.values(item.languages);
-          languagesKeys.forEach((lang) => {});
 
           modalData.innerHTML = `
           <div class="modal-img">
