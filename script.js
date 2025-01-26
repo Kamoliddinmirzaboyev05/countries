@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalBtnImg = document.querySelector(".modalBtnImg");
   const block = document.querySelector(".block");
   const backBtn = document.querySelector(".backBtn");
+  const testBtn = document.querySelector(".testBtn");
   const modal = document.querySelector(".modal");
   const searchInput = document.querySelector(".searchInput");
   const select = document.querySelector("select");
@@ -36,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   backBtn.addEventListener("click", () => {
     modal.style.bottom = "-1000px";
   });
+
   changeMode();
   mode.addEventListener("click", () => {
     if (body.classList.contains("dark")) {
@@ -196,6 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (item.name.common == country) {
           if (clicked) {
             modal.style.top = "0px";
+            modal.classList.add("show-modal");
           }
           const currencyKeys = Object.values(item.currencies);
           const languagesKeys = Object.values(item.languages);
