@@ -7,13 +7,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 500);
   }, 1000);
   const body = document.querySelector("body");
-  const mode = document.querySelectorAll(".mode");
+  const mode = document.querySelector(".mode");
+  const modalMode = document.querySelector(".modalMode");
   const btnImg = document.querySelector(".btnImg");
+  const modalBtnImg = document.querySelector(".modalBtnImg");
   const block = document.querySelector(".block");
   const backBtn = document.querySelector(".backBtn");
   const modal = document.querySelector(".modal");
   const searchInput = document.querySelector(".searchInput");
   const select = document.querySelector("select");
+  const modeTitle = document.querySelector(".modeTitle");
+  const modalModeTitle = document.querySelector(".modalModeTitle");
   const modalData = document.querySelector(".modal-data");
 
   const changeMode = () => {
@@ -23,24 +27,35 @@ document.addEventListener("DOMContentLoaded", () => {
     if (localStorage.getItem("darkMode") == "true") {
       body.classList.add("dark");
       btnImg.setAttribute("src", "img/sun.svg");
+      modalBtnImg.setAttribute("src", "img/sun.svg");
     } else {
       body.classList.remove("dark");
-      btnImg.setAttribute("src", "img/moon.svg");
+      modalBtnImg.setAttribute("src", "img/moon.svg");
     }
   };
   backBtn.addEventListener("click", () => {
     modal.style.bottom = "-1000px";
   });
   changeMode();
-  mode.forEach((modeBtn) => {
-    modeBtn.addEventListener("click", () => {
-      if (body.classList.contains("dark")) {
-        localStorage.setItem("darkMode", "false");
-      } else {
-        localStorage.setItem("darkMode", "true");
-      }
-      changeMode();
-    });
+  mode.addEventListener("click", () => {
+    if (body.classList.contains("dark")) {
+      localStorage.setItem("darkMode", "false");
+      modeTitle.textContent = "Dark Mode";
+    } else {
+      localStorage.setItem("darkMode", "true");
+      modeTitle.textContent = "Light Mode";
+    }
+    changeMode();
+  });
+  modalMode.addEventListener("click", () => {
+    if (body.classList.contains("dark")) {
+      localStorage.setItem("darkMode", "false");
+      modalModeTitle.textContent = "Dark Mode";
+    } else {
+      localStorage.setItem("darkMode", "true");
+      modalModeTitle.textContent = "Light Mode";
+    }
+    changeMode();
   });
 
   // Starting api
@@ -230,14 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                   </div>
                 </div>
-                <div class="border-country">
-                  <h2>Border Countries</h2>
-                  <div class="countries">
-                    <button class="borders">France</button>
-                    <button class="borders">France</button>
-                    <button class="borders">France</button>
-                  </div>
-                </div>
+               
               </div>
           `;
         }

@@ -22,39 +22,118 @@ header {
   position: fixed;
   display: flex;
   align-items: center;
+  flex-direction: column;
+  gap: 30px;
   justify-content: center;
   z-index: 99999;
 }
-.ring1 {
-  width: 150px;
-  height: 150px;
-  border: 4px solid yellow;
+.box {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
+  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border-top-color: transparent;
-  animation: rotate 2s linear infinite;
+  align-items: end;
+  justify-content: space-between;
+  gap: 10px;
+  animation: rotate 1.5s linear infinite;
 }
-
-.ring2 {
-  width: 60px;
-  height: 60px;
-  border: 6px dotted rgb(230, 101, 2);
+.disc {
+  border: 1px solid orange;
+  background-color: yellow;
   border-radius: 50%;
-  border-top-color: transparent;
-  animation: reverse 2s linear infinite;
+  position: absolute;
 }
+.disc2 {
+  width: 11px;
+  height: 11px;
 
+  top: 20px;
+  left: -1px;
+}
+.disc3 {
+  width: 12px;
+  height: 12px;
+
+  top: 8px;
+  left: 8px;
+}
+.disc4 {
+  width: 13px;
+  height: 13px;
+
+  top: -2px;
+  left: 21px;
+}
+.disc5 {
+  width: 14px;
+  height: 14px;
+
+  top: -7px;
+  left: 37px;
+}
+.disc6 {
+  width: 15px;
+  height: 15px;
+
+  top: -6px;
+  left: 56px;
+}
+.disc7 {
+  width: 16px;
+  height: 16px;
+
+  top: 3px;
+  left: 72px;
+}
+.disc8 {
+  width: 17px;
+  height: 17px;
+
+  top: 19px;
+  left: 85px;
+}
+.disc9 {
+  width: 18px;
+  height: 18px;
+
+  top: 39px;
+  left: 90px;
+}
+.disc10 {
+  width: 19px;
+  height: 19px;
+
+  top: 60px;
+  left: 85px;
+}
+.disc11 {
+  width: 20px;
+  height: 20px;
+
+  top: 77px;
+  left: 70px;
+}
+.disc12 {
+  width: 20px;
+  height: 20px;
+
+  top: 88px;
+  left: 48px;
+}
+.disc13 {
+  width: 21px;
+  height: 21px;
+
+  top: 83px;
+  left: 21px;
+}
+.loader h2 {
+  color: white;
+}
 @keyframes rotate {
   100% {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes reverse {
-  100% {
-    transform: rotate(180deg);
   }
 }
 
@@ -71,11 +150,18 @@ header {
   top: -1000px;
   background-color: white;
 }
+.dark .modal {
+  background-color: #202c36;
+}
 .show-modal {
   top: 0;
 }
 .modal-main .container {
   padding-top: 50px;
+}
+.dark .modal-main .container,
+.dark .modal-main .container p {
+  color: white;
 }
 .backBtn {
   padding: 10px 32px;
@@ -104,7 +190,6 @@ header {
   object-fit: contain;
 }
 .modal-img img {
-  width: 100%;
   width: 560px;
   height: 400px;
 }
@@ -114,12 +199,7 @@ header {
   justify-content: center;
   gap: 110px;
 }
-.border-country {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 20px;
-}
+
 
 /* Modal window end */
 nav {
@@ -342,5 +422,29 @@ option {
   .flag img {
     width: 350px;
     height: 200px;
+  }
+
+  /* modal mobile */
+  .modal .container{
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .modal-img {
+    width: 360px;
+    height: 200px;
+    object-fit: contain;
+  }
+  .modal-img img {
+    width: 360px;
+    height: 200px;
+  }
+  .modal-data {
+    justify-content: start;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .cols {
+    justify-content: start;
+    flex-direction: column;
   }
 }
