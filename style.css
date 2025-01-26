@@ -446,5 +446,6 @@ option {
   .cols {
     justify-content: start;
     flex-direction: column;
+    gap: 30px;
   }
 }
