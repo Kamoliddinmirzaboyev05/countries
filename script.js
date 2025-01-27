@@ -31,10 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
       modalBtnImg.setAttribute("src", "img/sun.svg");
     } else {
       body.classList.remove("dark");
+      btnImg.setAttribute("src", "img/moon.svg");
       modalBtnImg.setAttribute("src", "img/moon.svg");
     }
   };
-
   changeMode();
   mode.addEventListener("click", () => {
     if (body.classList.contains("dark")) {
