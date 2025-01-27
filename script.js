@@ -1,4 +1,4 @@
-const loader = document.querySelector(".loader");
+const loader = document.querySelector(".loader-back");
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     loader.style.opacity = "0";
@@ -255,4 +255,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   };
+  console.log();
+
+  searchInput.addEventListener("input", () => {
+    console.log(searchInput.value);
+  });
 });

@@ -15,10 +15,10 @@ header {
 }
 /* Loader window start */
 
-.loader {
+ .loader-back {
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, #dfc514, #2ab4f7);
+  background: linear-gradient(135deg,  rgb(0, 7, 116), black 55%, rgb(0, 7, 116));
   position: fixed;
   display: flex;
   align-items: center;
@@ -27,116 +27,42 @@ header {
   justify-content: center;
   z-index: 99999;
 }
-.box {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  position: relative;
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 10px;
-  animation: rotate 1.5s linear infinite;
-}
-.disc {
-  border: 1px solid orange;
-  background-color: yellow;
-  border-radius: 50%;
-  position: absolute;
-}
-.disc2 {
-  width: 11px;
-  height: 11px;
-
-  top: 20px;
-  left: -1px;
-}
-.disc3 {
-  width: 12px;
-  height: 12px;
-
-  top: 8px;
-  left: 8px;
-}
-.disc4 {
-  width: 13px;
-  height: 13px;
-
-  top: -2px;
-  left: 21px;
-}
-.disc5 {
-  width: 14px;
-  height: 14px;
-
-  top: -7px;
-  left: 37px;
-}
-.disc6 {
-  width: 15px;
-  height: 15px;
-
-  top: -6px;
-  left: 56px;
-}
-.disc7 {
-  width: 16px;
-  height: 16px;
-
-  top: 3px;
-  left: 72px;
-}
-.disc8 {
-  width: 17px;
-  height: 17px;
-
-  top: 19px;
-  left: 85px;
-}
-.disc9 {
-  width: 18px;
-  height: 18px;
-
-  top: 39px;
-  left: 90px;
-}
-.disc10 {
-  width: 19px;
-  height: 19px;
-
-  top: 60px;
-  left: 85px;
-}
-.disc11 {
-  width: 20px;
-  height: 20px;
-
-  top: 77px;
-  left: 70px;
-}
-.disc12 {
-  width: 20px;
-  height: 20px;
-
-  top: 88px;
-  left: 48px;
-}
-.disc13 {
-  width: 21px;
-  height: 21px;
-
-  top: 83px;
-  left: 21px;
-}
-.loader h2 {
+.loader-back h2{
   color: white;
 }
-@keyframes rotate {
-  100% {
-    transform: rotate(360deg);
-  }
+.loader {
+  width: 88px;
+  height: 88px;
+  display: inline-block;
+  position: relative;
+}
+.loader::after,
+.loader::before {
+  content: '';  
+  box-sizing: border-box;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  border: 2px solid #FFF;
+  position: absolute;
+  left: 0;
+  top: 0;
+  animation: animloader 2s linear infinite;
+}
+.loader::after {
+  animation-delay: 1s;
 }
 
+@keyframes animloader {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
 /* Loader window end */
 
 /* Modal window start */
