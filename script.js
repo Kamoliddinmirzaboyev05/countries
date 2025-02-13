@@ -13,13 +13,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalBtnImg = document.querySelector(".modalBtnImg");
   const block = document.querySelector(".block");
   const backBtn = document.querySelector(".backBtn");
-  const testBtn = document.querySelector(".testBtn");
   const modal = document.querySelector(".modal");
   const searchInput = document.querySelector(".searchInput");
   const select = document.querySelector("select");
   const modeTitle = document.querySelector(".modeTitle");
   const modalModeTitle = document.querySelector(".modalModeTitle");
   const modalData = document.querySelector(".modal-data");
+  const addBtn = document.querySelector(".addBtn");
+  const addBack = document.querySelector(".addBack");
+  const figmaTitle = document.querySelector(".figmaTitle");
+  const urlImg = document.querySelector(".urlImg");
+  const urlFigma = document.querySelector(".urlFigma");
+  const figmaLang = document.querySelector(".figmaLang");
+  const figmaType = document.querySelector(".figmaType");
+  const figmaInfo = document.querySelector(".figmaInfo");
+  const addFigmaBtn = document.querySelector(".addFigmaBtn");
 
   const changeMode = () => {
     darkMode = localStorage.getItem("darkMode")
@@ -57,95 +65,93 @@ document.addEventListener("DOMContentLoaded", () => {
     changeMode();
   });
 
+  // Add figma function
+
+  addBtn.addEventListener("click", () => {
+    addBack.classList.add("addActive");
+  });
+
   // Starting api
   let data, population;
-  const apiLink = "https://restcountries.com/v3.1/all";
+  const apiLink = "https://679e2ea0946b0e23c062c4e8.mockapi.io/users/figmaland";
   const writeData = (DB) => {
-    DB.forEach((item) => {
-      if (item.population < 1000) {
-        population = item.population;
-      }
-      // milliondan kam aholi
-      else if (item.population > 1000 && item.population < 1000000) {
-        var yuz = item.population % 1000;
-        if (yuz < 10) {
-          yuz = `00${yuz}`;
-        } else if (yuz < 100) {
-          yuz = `0${yuz}`;
-        }
-        var ming = item.population / 1000;
-        population = `${Math.floor(ming)} ${yuz}`;
-      }
-      //   milliondan ko'p aholi
-      else if (item.population > 1000000 && item.population < 1000000000) {
-        var yuz = item.population % 1000;
-        var ming = (item.population % 1000000) / 1000;
-        var mln = item.population / 1000000;
-        if (yuz < 10) {
-          yuz = `00${yuz}`;
-        } else if (yuz < 100) {
-          yuz = `0${yuz}`;
-        }
-        if (ming < 10) {
-          ming = `00${ming}`;
-        } else if (ming < 100) {
-          ming = `0${Math.floor(ming)}`;
-          population = `${Math.floor(mln)} ${ming} ${yuz}`;
-        } else {
-          population = `${Math.floor(mln)} ${Math.floor(ming)} ${yuz}`;
-        }
-      }
-      //   milliarddan ko'p aholi
-      else {
-        var yuz = item.population % 1000;
-        var ming = (item.population % 1000000) / 1000;
-        var mln = (item.population % 1000000000) / 1000000;
-        var mlrd = item.population / 1000000000;
-        if (yuz < 10) {
-          yuz = `00${yuz}`;
-        } else if (yuz < 100) {
-          yuz = `0${yuz}`;
-        }
-        population = `${Math.floor(mlrd)} ${Math.floor(mln)} ${Math.floor(
-          ming
-        )} ${yuz}`;
-      }
-      block.innerHTML += `
-        <div class="card">
-              <div class="flag">
-                <img class="flagImg" src="${item.flags.png}" alt="" />
-              </div>
-              <div class="card-text">
-                <h2 class="country-name">${item.name.common}</h2>
-                <div class="row">
-                  <p class="key">Population:</p>
-                  <p class="value">${population}</p>
-                </div>
-                <div class="row">
-                  <p class="key ">Region:</p>
-                  <p class="value region">${item.region}</p>
-                </div>
-                <div class="row">
-                  <p class="key">Capital:</p>
-                  <p class="value">${item.capital}</p>
-                </div>
-              </div>
-            </div>
-        `;
-    });
+    // DB.forEach((item) => {
+    //   block.innerHTML += `
+    //     <div class="card">
+    //           <div class="flag">
+    //             <img class="flagImg" src="${item.flags.png}" alt="" />
+    //           </div>
+    //           <div class="card-text">
+    //             <h2 class="country-name">${item.name.common}</h2>
+    //             <div class="row">
+    //               <p class="key">Population:</p>
+    //               <p class="value">${population}</p>
+    //             </div>
+    //             <div class="row">
+    //               <p class="key ">Region:</p>
+    //               <p class="value region">${item.region}</p>
+    //             </div>
+    //             <div class="row">
+    //               <p class="key">Capital:</p>
+    //               <p class="value">${item.capital}</p>
+    //             </div>
+    //           </div>
+    //         </div>
+    //     `;
+    // });
   };
 
   //   Synxron funksiya start
   const getData = async (link) => {
     const req = await fetch(link);
     data = await req.json();
-    writeData(data);
-    writeModal(data);
     console.log(data);
   };
   getData(apiLink);
   // Synxron funksiya end
 
+  // Post function start
+  const postData = async (url, postedData) => {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postedData),
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const responseData = await response.json();
+    return responseData;
+  };
+
+  // Misol uchun foydalanish:
+
+  const postedData = {
+    img: urlImg.value,
+    info: "figmaInfo.value",
+    lang: "figmaLang.value",
+    title: "figmaTitle.value",
+    type: "figmaType.value",
+    url: "urlFigma.value",
+  };
+
+  addFigmaBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    alert("Malumotlar qoshildi");
+    postData(apiLink, postedData)
+      .then((responseData) => {
+        console.log("Malumotlar muvaffaqiyatli yuborildi:", responseData);
+      })
+      .catch((error) => {
+        console.error("Xato yuz berdi:", error);
+      });
+  });
+
+  // Post function end
   //search uchun yozilgan funksiya
 
   searchInput.addEventListener("input", () => {
@@ -173,7 +179,6 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         card.classList.remove("hidden");
       }
-
       if (select.value == "all") {
         card.classList.remove("hidden");
       }
@@ -196,66 +201,6 @@ document.addEventListener("DOMContentLoaded", () => {
   backBtn.addEventListener("click", () => {
     modal.classList.remove("show-modal");
   });
-
-  const writeModal = (DB) => {
-    DB.forEach((item) => {
-      window.addEventListener("click", () => {
-        if (item.name.common == country) {
-          const currencyKeys = Object.values(item.currencies);
-          const languagesKeys = Object.values(item.languages);
-
-          modalData.innerHTML = `
-          <div class="modal-img">
-                <img src="${item.flags.png}" alt="" />
-              </div>
-              <div class="country-data">
-                <h1>${item.name.common}</h1>
-                <div class="cols">
-                  <div class="col">
-                    <div class="row">
-                      <p class="key">Native Name:</p>
-                      <p class="value">${item.name.common}</p>
-                    </div>
-                    <div class="row">
-                      <p class="key">Population:</p>
-                      <p class="value">${item.population}</p>
-                    </div>
-                    <div class="row">
-                      <p class="key">Region:</p>
-                      <p class="value">${item.region}</p>
-                    </div>
-                    <div class="row">
-                      <p class="key">Time Zone:</p>
-                      <p class="value">${item.timezones[0]}</p>
-                    </div>
-                    <div class="row">
-                      <p class="key">Capital:</p>
-                      <p class="value">${item.capital}</p>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="row">
-                      <p class="key">Top Level Domain:</p>
-                      <p class="value">${item.tld[0]}</p>
-                    </div>
-                    <div class="row">
-                      <p class="key">Currencies:</p>
-                      <p class="value">${currencyKeys[0].name}, ${currencyKeys[0].symbol}</p>
-                    </div>
-                    <div class="row">
-                      <p class="key">Languages:</p>
-                      <p class="value">${languagesKeys[0]}</p>
-                    </div>
-                  </div>
-                </div>
-               
-              </div>
-          `;
-        }
-      });
-    });
-  };
-  console.log();
 
   searchInput.addEventListener("input", () => {
     console.log(searchInput.value);
